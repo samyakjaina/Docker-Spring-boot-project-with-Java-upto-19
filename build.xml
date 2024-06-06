@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="my-spring-boot-app" default="build">
+    <property name="src.dir" value="src/main/java"/>
+    <property name="build.dir" value="target"/>
+    <property name="jar.file" value="${build.dir}/demo-0.0.1-SNAPSHOT.jar"/>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="build">
+        <mkdir dir="${build.dir}"/>
+        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${build.dir}"/>
+    	<classpath>
+    	            <!-- Include Spring Boot dependencies -->
+    	            <fileset dir="Maven Dependencies">
+    	                <include name="*.jar"/>
+    	            </fileset>
+    	  </classpath>
+    	<jar destfile="${jar.file}">
+    	            <fileset dir="${build.dir}"/>
+    	        </jar>
+    </target>
+
+    <target name="copy-jar">
+        <copy file="${jar.file}" todir="D:\db"/>
+    </target>
+
+    <target name="run-other-commands">
+        <exec command="some other command"/>
+    </target>
+</project>
